@@ -79,10 +79,43 @@ addTransaction("May-29", 2200)
 // console.log(transactions)
 
 // Add function to show balance status
-function 
+function showBalanceStatus(balance) {
+	console.log(`Balance: ${balance}`);
+	if (balance < 0) {
+		console.log("YOU ARE OVERDRAWN")
+	}else if (balance < 20) {
+		console.log("Warning, you are close to zero balance")
+	} else {
+		console.log("Thank you for your business")
+	}
+
+}
+// showBalanceStatus(-3)
+// showBalanceStatus(3)
+// showBalanceStatus(40)
 
 // Add function to show transactions
+function showTransactions(transMap, beginningBalance){
+	
+	console.log(beginningBalance)
+	let newBalance = beginningBalance;
 
+	for (let [date, transactionAmount] of transMap) {
+		newBalance += transactionAmount;
+		// currentBalance += transactionAmount;
+		if (transactionAmount < 0){
+			console.log(`${date} -- withdrawal\nAmount changed: ${transactionAmount} \nNew Balance: ${newBalance}`);
+			console.log();
+		} else if (transactionAmount > 0){
+			console.log(`${date} -- deposit \nAmount changed: ${transactionAmount} \nNew Balance: ${newBalance}`);
+			console.log();
+		}
+		// console.log(date)
+	}
+	showBalanceStatus(newBalance)
+}
+
+showTransactions(transactions, 50)
 
 // ///////////////////////////////////////////////////////
 // All Customer Info:
